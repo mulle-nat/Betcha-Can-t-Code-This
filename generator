@@ -1,12 +1,15 @@
 #! /usr/bin/env bash
 
+IFS=''
+LC_ALL='C'
+
 printf "Enter String > "
 read -r STRING
 
-### don't change anything below this line
 
-CMAKEFLAGS="-DCMAKE_C_FLAGS=-std=c89 -DHELLO=${STRING}"
+### You shouldn't change anything below this line
 
-cmake -G "Unix Makefiles" "${CMAKEFLAGS}" .  && \
-make -B  && \
+CFLAGS="-DHELLO=${STRING}"
+
+make -B CFLAGS="-std=gnu98 -Wno-trigraphs ${CFLAGS}" && \
 ./hello
