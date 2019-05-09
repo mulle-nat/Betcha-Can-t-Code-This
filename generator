@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+printf "Enter String > "
+read -r STRING
+
+### don't change anything below this line
+
+CMAKEFLAGS="-DCMAKE_C_FLAGS=-std=c89 -DHELLO=${STRING}"
+
+cmake -G "Unix Makefiles" "${CMAKEFLAGS}" .  && \
+make -B  && \
+./hello
